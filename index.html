@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>E-Library System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+  <div id="login-section">
+    <h2>Login with Gmail ID</h2>
+    <input type="email" id="gmail-input" placeholder="Enter Gmail ID" />
+    <button onclick="login()">Login</button>
+    <p id="login-error" style="color:red;"></p>
+  </div>
+
+  <div id="main-section" class="hidden">
+    <h2>Welcome, <span id="username"></span>!</h2>
+
+    <section id="search-section">
+      <h3>Search Books</h3>
+      <input type="text" id="search-name" placeholder="Book Name" />
+      <input type="text" id="search-author" placeholder="Author Name" />
+      <select id="search-genre">
+        <option value="">All Genres</option>
+        <option>Academic</option>
+        <option>Technology</option>
+        <option>Fiction</option>
+        <option>Biography</option>
+      </select>
+      <button onclick="searchBooks()">Search</button>
+
+      <table id="books-table" class="hidden">
+        <thead>
+          <tr><th>Name</th><th>Author</th><th>Genre</th><th>Status</th><th>Location</th><th>Borrower</th><th>Due Date</th><th>Year</th></tr>
+        </thead>
+        <tbody id="books-tbody"></tbody>
+      </table>
+      <p id="no-books-msg" class="hidden">No books found.</p>
+    </section>
+
+    <section id="print-section" style="margin-top: 40px;">
+      <h3>Print Notes</h3>
+      <textarea id="notes-text" rows="5" placeholder="Paste your notes here..."></textarea><br/>
+      <label class="inline"><input type="radio" name="print-color" value="Black & White" checked /> Black & White</label>
+      <label class="inline"><input type="radio" name="print-color" value="Color" /> Color</label><br/>
+      <input type="number" id="copies" min="1" value="1" style="width: 100px;" />
+      <button onclick="printNotes()">Print & Pay with GPay</button>
+      <p id="print-message" style="color:green;"></p>
+    </section>
+  </div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
