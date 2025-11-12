@@ -83,6 +83,63 @@
       messagePara.textContent = "Please enter notes to print.";
       return;
     }
+    document.getElementById("payment-modal").classList.remove("hidden");
+  clearPaymentForm();
+  showPrintMessage("");
+}
+
+function cancelPayment() {
+  document.getElementById("payment-modal").classList.add("hidden");
+  showPrintMessage("Print payment cancelled.", true);
+}
+
+function confirmPayment() {
+  const name = document.getElementById("pay-name").value.trim();
+  const card = document.getElementById("pay-card").value.trim();
+  const expiry = document.getElementById("pay-expiry").value.trim();
+  const cvv = document.getElementById("pay-cvv").value.trim();
+  const errorPara = document.getElementById("payment-error");
+
+  errorPara.textContent = "";
+  if(name.length < 3) { errorPara.textContent = "Please enter your full name.";
+     return; }
+  if(!/^\d{4} ?\d{4} ?\d{4} ?\d{4}$/.test(card.replace(/\s /g,""))){ 
+    errorPara.textContent = "Enter a valid 16-digit card number."; 
+    return; 
+  }
+  if(!/d\ ^{2}\/\d{2}$/.test(expiry)) {
+    errorPara.textContent = "Expiry must be in MM/YY format."; return;
+   }
+  if(!/^d{3,4}$/.test(cvv)) {
+    errorPara.textContent = "CVV must be 3 or 4 digits."; return;
+   }
+  errorPara.style.color = "green";
+  errorPara.textContent = "Processing payment...";
+  setTimeout(() => {
+    document.getElementById("payment-modal").classList.add("hidden");
+    showPrintMessage("Payment successful! Your notes are being printed.");
+    resetPrintForm();
+  }, 2000);
+}
+
+function clearPaymentForm(){
+  document.getElementById("pay-name").value = "";
+  document.getElementById("pay-card").value = "";
+  document.getElementById("pay-expiry").value = "";
+  document.getElementById("pay-cvv").value = "";
+  document.getElementById("payment-error").textContent = "";
+}
+
+function showPrintMessage(msg, isError=false) {
+  const p = document.getElementById("print-message");
+  p.textContent = msg;
+  p.style.color = isError ? "red" : "green";
+}
+
+function resetPrintForm() {
+  document.getElementById("notes-text").value = "";
+  document.getElementById("copies").value = "1";
+}
     if(isNaN(copies) || copies < 1){
       messagePara.style.color = "red";
       messagePara.textContent = "Copies must be a positive number.";
@@ -93,4 +150,4 @@
       document.getElementById("notes-text").value = "";
       document.getElementById("copies").value = "1";
     },1000);
-}
+  
