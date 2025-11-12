@@ -48,20 +48,7 @@
       <label class="inline"><input type="radio" name="print-color" value="Color" /> Color</label><br/>
       <input type="number" id="copies" min="1" value="1" style="width: 100px;" />
       <button onclick="printNotes()">Print & Pay with GPay</button>
-      <div id="payment-modal" class="hidden" >
-    <h3>Payment Details</h3>
-    <label>Full Name:<br/><input type="text" id="pay-name"></label>
-    <label>Card Number:<br/><input type="text" id="pay-card" maxlength="19" placeholder="1111 2222 3333 4444" ></label>
-    <label>Expiry (MM/YY):<br/><input type="text" id="pay-expiry" maxlength="5" placeholder="MM/YY" ></label>
-    <label>CVV:<br/><input type="password" id="pay-cvv" maxlength="4" ></label>
-    <div style="margin-top:10px;text-align:right;">
-      <button onclick="cancelPayment()">Cancel</button>
-      <button onclick="confirmPayment()">Confirm Payment</button>
-    </div>
-    <p id="payment-error"></p>
-  </div>
-</div>
-      <p id="print-message"></p>
+      <p id="print-message" style="color: green;"></p>
     </section>
   </div>
 
